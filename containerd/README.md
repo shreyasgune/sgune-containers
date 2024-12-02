@@ -49,9 +49,50 @@ Dec 01 13:15:28 DESKTOP-KBBD829 systemd[1]: Started containerd container runtime
 
 ## checking
 
-```
-nerdctl run -it --rm alpine /bin/sh
+- Image Pull
+<details><summary>ctr images pull docker.io/library/redis:alpine</summary>
 
+```diff
+~ > sudo ctr images pull docker.io/library/redis:alpine                                                     08:14:55 AM
+docker.io/library/redis:alpine:                                                   resolved       |++++++++++++++++++++++++++++++++++++++|
+index-sha256:c1e88455c85225310bbea54816e9c3f4b5295815e6dbf80c34d40afc6df28275:    done           |++++++++++++++++++++++++++++++++++++++|
+manifest-sha256:395033a36458e5312f5bce401452efe6606705fc8b9a574611af6436ac3ff632: done           |++++++++++++++++++++++++++++++++++++++|
+config-sha256:87b460005bd3a6621dabf2855ec42bf96b1b6d044b6109bd9736128ab178ddec:   done           |++++++++++++++++++++++++++++++++++++++|
+layer-sha256:37d63ae71d3552a8a9e6ec86a6949e062494ae742d63385e6d1aadc692e45b4a:    done           |++++++++++++++++++++++++++++++++++++++|
+layer-sha256:b3d150cb1b6c3813e2b064652da3c74f35793602e44c9e7b386f93197a11207e:    done           |++++++++++++++++++++++++++++++++++++++|
+layer-sha256:da9db072f522755cbeb85be2b3f84059b70571b229512f1571d9217b77e1087f:    done           |++++++++++++++++++++++++++++++++++++++|
+layer-sha256:369ad5b9119b92446b3dfc671a05c25335f177e1faae9e14cd07e9ecc1528033:    done           |++++++++++++++++++++++++++++++++++++++|
+layer-sha256:be83d0fd33a347ae91aa8ccf911f55c0780a11fc29408bc1eb3d5c0ccd695612:    done           |++++++++++++++++++++++++++++++++++++++|
+layer-sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1:    done           |++++++++++++++++++++++++++++++++++++++|
+layer-sha256:dd8d46bd4047234ff762742c1fe4f1c7607586fec1219836a52843d119f8133d:    done           |++++++++++++++++++++++++++++++++++++++|
+layer-sha256:5057e26f1a86ccf8d3a0ae8a1de72d36ac1dce772741e3f000d89ff7a33dec3d:    done           |++++++++++++++++++++++++++++++++++++++|
+elapsed: 12.2s                                                                    total:  17.6 M (1.4 MiB/s)
+
+unpacking linux/amd64 sha256:c1e88455c85225310bbea54816e9c3f4b5295815e6dbf80c34d40afc6df28275...
+done: 1.190561761s
 ```
+</details>
+
+
+- Image Run
+<details><summary>ctr run docker.io/redis:apline</summary>
+
+```diff
+~ > sudo ctr run docker.io/library/redis:alpine redis                                                   13s 08:15:14 AM
+1:C 02 Dec 2024 02:45:31.283 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under low memory condition. Being disabled, it can also cause failures without low memory condition, see https://github.com/jemalloc/jemalloc/issues/1328. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+1:C 02 Dec 2024 02:45:31.283 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1:C 02 Dec 2024 02:45:31.283 * Redis version=7.4.1, bits=64, commit=00000000, modified=0, pid=1, just started
+1:C 02 Dec 2024 02:45:31.283 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+1:M 02 Dec 2024 02:45:31.284 # You requested maxclients of 10000 requiring at least 10032 max file descriptors.
+1:M 02 Dec 2024 02:45:31.284 # Server can't set maximum open files to 10032 because of OS error: Operation not permitted.
+1:M 02 Dec 2024 02:45:31.284 # Current maximum open files is 1024. maxclients has been reduced to 992 to compensate for low ulimit. If you need higher maxclients increase 'ulimit -n'.
+1:M 02 Dec 2024 02:45:31.284 * monotonic clock: POSIX clock_gettime
+1:M 02 Dec 2024 02:45:31.285 * Running mode=standalone, port=6379.
+1:M 02 Dec 2024 02:45:31.286 * Server initialized
+1:M 02 Dec 2024 02:45:31.287 * Ready to accept connections tcp
+```
+</details>
+
+
 
 
